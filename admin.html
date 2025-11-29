@@ -7,5 +7,62 @@
 </head>
 <body>
     <h1>Welcome to Admin Dashboard</h1>
+    <section id="Navbar">
+
+    </section>
+<!-- form  -->
+    <section id="Sidebar">
+        <form>
+            <input type="text" id="RgNo" placeholder="Reg No of Vehicle">
+          <!-- Category of vehicle -->
+            <select id="category">
+                <option value="Auto">Auto</option>
+                <option value="Car">Car</option>
+                <option value="Truck">Truck</option>
+                <option value="Bus">Bus</option>
+            </select>
+        <!-- Driver Name -->
+            <input type="text" name="driver" id="driver" placeholder="Driver Name">
+           <!-- Check driver is available or not -->
+            <select id="availability">
+                <option value="Avail">Available</option>
+                <option value="Unavail">Unavailable</option>
+            </select>
+            <button onclick="addfleet();">Add Fleet</button>
+        </form>
+    </section>
+    <!-- for displaying cards -->
+    <section id="main Content">
+    </section>
+    <script>
+        let data=[];
+        let img_url="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png";
+         
+
+        function addfleet()
+        {
+            let reg=document.getElementById("RgNo").value;
+            let driver=document.getElementById("driver").value;
+            let status=document.getElementById("availability").value;
+            let category=document.getElementById("category").value;
+
+            // data object creation
+            let dataObj={
+                reg,
+                category,
+                driver,
+                status,
+                img:img_url
+            };
+            // Pushing object to array
+            data.push(dataObj);
+            display(data);
+            document.getElementById("RgNo").value="";
+            document.getElementById("driver").value="";
+            document.getElementById("availability").value="";
+            document.getElementById("category").value="";
+        }
+
+    </script>
 </body>
 </html>
