@@ -8,7 +8,16 @@
 <body>
     <h1>Welcome to Admin Dashboard</h1>
     <section id="Navbar">
-
+        <select id="filter" onchange="filter();">
+            <option value="All">All</option>
+            <option value="Auto">Auto</option>
+            <option value="truck">truck</option>
+            <option value="BUS">BUs</option>
+        </select>
+        <select id="availables" onchange="avaialble();">
+            <option value="availy">Available</option>
+            <option value="unavaily">UnAvailable</option>
+        </select>
     </section>
 <!-- form  -->
     <section id="Sidebar">
@@ -33,6 +42,7 @@
     </section>
     <!-- for displaying cards -->
     <section id="main Content">
+
     </section>
     <script>
         let data=[];
@@ -46,6 +56,10 @@
             let status=document.getElementById("availability").value;
             let category=document.getElementById("category").value;
 
+            if(!reg || !driver || !status || !category){
+                alert("Please fill all fields");
+                return;
+            }
             // data object creation
             let dataObj={
                 reg,
@@ -61,6 +75,64 @@
             document.getElementById("driver").value="";
             document.getElementById("availability").value="";
             document.getElementById("category").value="";
+        }
+        // displaying values in the card
+        function display(data){
+            let maincontent=document.getElementById("main Content");
+            maincontent.innerHTML="";
+           data.forEach((value,index) => {
+            
+            
+            let card=document.createElement("div");
+            card.className="card";
+           card.innerHTML="";
+
+            let RegNo=document.createElement("h5");
+            RegNo.textContent=value.reg;
+            let category=document.createElement("h6");
+            category.textContent=value.category;
+            let driver=document.createElement("p");
+            driver.textContent=value.driver;
+            let status=document.createElement("p");
+            status.textContent=value.status;
+            let img=document.createElement("img");
+            img.innerHTML=value.img;
+            let updbtn=document.createElement("button");
+            updbtn=Update(index);
+            let change=document.createElement("button");
+            change=Changed(index);
+            let deletebtn=document.createElement("button");
+            deletebtn=deleteb(index);
+           card.appendChild(RegNo);
+            card.appendChild(category);
+            card.appendChild(driver);
+            card.appendChild(status);
+            card.appendChild(img);
+            card.appendChild(updbtn);
+            card.appendChild(change);
+            card.appendChild(deletebtn);
+            maincontent.appendChild(card);
+        
+        });
+    function deleteb(index)
+    {
+        data.slice(index,1);
+        
+    }
+
+        }
+        function filter()
+        {
+            let category=document.getElementById("filtered").value;
+            if(category==="All")
+        {
+
+        }
+        data.filter((category)=>{
+            category=>data.category==category;
+
+
+        })
         }
 
     </script>
