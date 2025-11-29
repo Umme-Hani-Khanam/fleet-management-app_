@@ -117,6 +117,7 @@
     function deleteb(index)
     {
         data.slice(index,1);
+        display(data);
         
     }
 
@@ -125,14 +126,15 @@
         {
             let category=document.getElementById("filtered").value;
             if(category==="All")
-        {
+        {   display(data);
 
-        }
+        }else{
         data.filter((category)=>{
             category=>data.category==category;
+           
 
-
-        })
+        })}
+        display(category)
         }
 
     </script>
